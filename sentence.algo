@@ -1,0 +1,67 @@
+BEGIN
+ /*'<-' symbol is commonly used to represent assignment, which is similar to the '=' operator */
+    //It means "assign the value on the right to the variable on the left."
+    // Initializing counters
+    length_of_sentence <- 0
+    number_of_words <- 0
+    number_of_vowels <- 0  //counter that keeps track of the total number of vowels in the sentence.
+
+    // Vowels set
+    vowels <- "aeiouAEIOU"
+
+    // Input sentence
+    // outputs the message to the user.
+    OUTPUT "Enter a sentence ending with a period: "
+    sentence <- INPUT
+    //The INPUT command captures the user's input and assigns it to the variable sentence.
+
+
+    // Initializing word flag which means  setting up a boolean variable that helps in tracking whether the algorithm is currently within a word or not.
+    // in_word is the word flag, it is set to FALSE because, at the start, the algorithm has not yet encountered any characters that form a word.
+    in_word <- FALSE
+
+    // Iterate over each character in the sentence
+   // 'char' represents the current character being processed in each iteration of the loop.
+
+    FOR EACH char IN sentence DO
+    //This line increments the 'length_of_sentence' counter by 1.
+        length_of_sentence <- length_of_sentence + 1
+
+    //This condition checks if the current character 'char' is in the set of vowels.
+    //Vowels are predefined at line 10
+        IF char IN vowels THEN
+            number_of_vowels <- number_of_vowels + 1
+        ENDIF
+
+
+    //This condition checks if the current character 'char' is a space.
+        IF char = " " THEN
+        //This inner condition checks if the algorithm is currently within a word.
+            IF in_word = TRUE THEN
+            //If in_word is TRUE, this line increments the number_of_words counter by 1, indicating the end of a word.
+                number_of_words <- number_of_words + 1
+                //After counting the word, set the in_word flag to FALSE to indicate that the algorithm is now outside of a word (since it encountered a space).
+                in_word <- FALSE
+            ENDIF
+      //This condition checks if the current character char is a period, indicating the end of the sentence.
+        ELSE IF char = "." THEN
+        //This inner condition checks if the algorithm is currently within a word.
+            IF in_word = TRUE THEN
+            // this line increments the number_of_words counter by 1.
+                number_of_words <- number_of_words + 1
+            ENDIF
+        //this part handles any character that is not a space or a period
+        ELSE
+        //Set the in_word flag to TRUE to indicate that the algorithm is currently within a word.
+            in_word <- TRUE
+        ENDIF
+    ENDFOR
+
+    /* Output the results*/
+    /*'OUTPUT' command to display messages and results to the user.*/
+    /*'TO_STRING()' is a function or command used to convert numerical values to strings.*/
+    /*'+' is used for combining strings and variables into a single output message.*/
+    OUTPUT "Length of the sentence: " + TO_STRING(length_of_sentence) // outputs the total number of characters in the sentence.
+    OUTPUT "Number of words in the sentence: " + TO_STRING(number_of_words) // outputs the total count of words identified in the sentence.
+    OUTPUT "Number of vowels in the sentence: " + TO_STRING(number_of_vowels) //outputs the total count of vowels detected in the sentence.
+END
