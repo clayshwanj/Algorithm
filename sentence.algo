@@ -8,7 +8,7 @@ BEGIN
 
     // Vowels set
     vowels <- "aeiouAEIOU"
-
+    
     // Input sentence
     // outputs the message to the user.
     OUTPUT "Enter a sentence ending with a period: "
